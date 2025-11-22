@@ -5,17 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Pixie Features</title>
 
+<script>
+// ===== Auto-resize for Google Sites embeds =====
+function sendHeight() {
+  const height = document.body.scrollHeight;
+  parent.postMessage({ type: "setHeight", height: height }, "*");
+}
+window.onload = sendHeight;
+window.onresize = sendHeight;
+setInterval(sendHeight, 500); // backup auto-update
+</script>
+
 <style>
-/* ===== Global Reset for Container Safety ===== */
 html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   overflow-x: hidden;
-  font-family: "Inter", sans-serif;
   background: #f7f7f7;
+  font-family: "Inter", sans-serif;
 }
 
+/* ===== Global Reset for Container Safety ===== */
 .section-container,
 .features-container {
   width: 100%;
@@ -39,7 +50,6 @@ html, body {
   flex: 1 1 300px;
   max-width: 360px;
   width: 100%;
-
   border: 2px solid #d23b3b;
   border-radius: 20px;
   padding: 25px;
